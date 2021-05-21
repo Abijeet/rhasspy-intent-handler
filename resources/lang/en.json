@@ -1,0 +1,5 @@
+{
+    "rhasspy_success_please_wait": "A moment please",
+    "rhasspy_error_unknown": "Sorry, I do not know how to respond to that.",
+    "rhasspy_error_confused": "I did not understand that, could you please repeat it?"
+}

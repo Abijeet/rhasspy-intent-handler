@@ -2,17 +2,18 @@
 
 namespace App\Providers;
 
+use App\IntentHandlers\IntentHandlerFactory;
+use App\IntentHandlers\IntentHandlerService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
-        //
+        $this->app->singleton(
+            IntentHandlerService::class, function () {
+                return new IntentHandlerService(new IntentHandlerFactory());
+            }
+        );
     }
 }
