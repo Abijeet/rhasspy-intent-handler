@@ -7,6 +7,7 @@ use App\IntentHandlers\IntentHandlerService;
 use App\IntentHandlers\WikipediaIntentHandler;
 use App\QueryBuilders\AudioQueryBuilder;
 use App\QueryBuilders\QueryBuilder;
+use App\QueryHandlers\WikipediaQueryHandler;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(
-            QueryRetriever::class, function(): QueryBuilder {
+            QueryBuilder::class, function(): QueryBuilder {
                 return new AudioQueryBuilder(
                     config('audio.recorder'),
                     config('audio.args'),
@@ -31,7 +32,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(
             WikipediaIntentHandler::class, function($app): WikipediaIntentHandler {
-                return new WikipediaIntentHandler($app->make(QueryBuilder::class));
+                return new WikipediaIntentHandler(
+                    $app->make(QueryBuilder::class),
+                    $app->make(WikipediaQueryHandler::class)
+                );
             }
         );
     }

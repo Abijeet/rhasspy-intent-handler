@@ -5,12 +5,17 @@ namespace App\IntentHandlers;
 
 use App\Models\Intent;
 use App\QueryBuilders\QueryBuilder;
+use App\QueryHandlers\WikipediaQueryHandler;
 
 class WikipediaIntentHandler implements IntentHandler
 {
     private const NAME = 'Wikipedia';
 
-    public function __construct(private QueryBuilder $QueryBuilder) {}
+    public function __construct(
+        private QueryBuilder $queryBuilder,
+        private WikipediaQueryHandler $queryHandler
+
+    ) {}
 
     public function is(Intent $intent): bool {
         return $intent->getName() === self::NAME;
@@ -23,5 +28,6 @@ class WikipediaIntentHandler implements IntentHandler
     public function handle(Intent $intent): void {
         // TODO:
         $searchText = $this->queryBuilder->get();
+        $queryResult = $this->queryHandler->getQueryResult($searchText);
     }
 }
