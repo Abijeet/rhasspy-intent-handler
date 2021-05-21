@@ -4,8 +4,8 @@ declare( strict_types = 1 );
 namespace App\IntentHandlers;
 
 use App\Models\Intent;
-use App\QueryBuilders\QueryBuilder;
-use App\QueryHandlers\WikipediaQueryHandler;
+use App\SearchQuery\Builders\QueryBuilder;
+use App\SearchQuery\Handlers\WikipediaQueryHandler;
 
 class WikipediaIntentHandler implements IntentHandler
 {

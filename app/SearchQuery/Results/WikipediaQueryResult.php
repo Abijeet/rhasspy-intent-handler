@@ -1,7 +1,7 @@
 <?php
 declare( strict_types = 1 );
 
-namespace App\QueryResults;
+namespace App\SearchQuery\Results;
 
 class WikipediaQueryResult implements QueryResult {
     private function __construct(

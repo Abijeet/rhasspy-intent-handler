@@ -5,9 +5,9 @@ namespace App\Providers;
 use App\IntentHandlers\IntentHandlerFactory;
 use App\IntentHandlers\IntentHandlerService;
 use App\IntentHandlers\WikipediaIntentHandler;
-use App\QueryBuilders\AudioQueryBuilder;
-use App\QueryBuilders\QueryBuilder;
-use App\QueryHandlers\WikipediaQueryHandler;
+use App\SearchQuery\Builders\AudioQueryBuilder;
+use App\SearchQuery\Builders\QueryBuilder;
+use App\SearchQuery\Handlers\WikipediaQueryHandler;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

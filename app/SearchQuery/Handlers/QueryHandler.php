@@ -1,9 +1,9 @@
 <?php
 declare( strict_types = 1 );
 
-namespace App\QueryHandlers;
+namespace App\SearchQuery\Handlers;
 
-use App\QueryResults\QueryResult;
+use App\SearchQuery\Results\QueryResult;
 
 interface QueryHandler {
     public function getQueryResult(string $query): QueryResult;

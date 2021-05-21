@@ -1,7 +1,7 @@
 <?php
 declare( strict_types = 1 );
 
-namespace App\QueryBuilders;
+namespace App\SearchQuery\Builders;
 
 class AudioQueryBuilder implements QueryBuilder {
     public function __construct(
@@ -11,6 +11,6 @@ class AudioQueryBuilder implements QueryBuilder {
     ) {}
 
     public function get(): string {
-        return 'New Delhi';
+        return 'Hello World';
     }
 }

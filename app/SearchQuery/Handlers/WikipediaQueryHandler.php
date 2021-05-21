@@ -1,11 +1,11 @@
 <?php
 declare( strict_types = 1 );
 
-namespace App\QueryHandlers;
+namespace App\SearchQuery\Handlers;
 
 use App\Exceptions\QueryResultError;
 use App\Exceptions\QueryResultNotFound;
-use App\QueryResults\WikipediaQueryResult;
+use App\SearchQuery\Results\WikipediaQueryResult;
 use GuzzleHttp\Client;
 
 class WikipediaQueryHandler implements QueryHandler {
