@@ -12,9 +12,11 @@ use Throwable;
 class IntentHandlerController extends Controller
 {
     public function handle(Request $request, IntentHandlerService $intentHandlerService): JsonResponse {
-        if (!$request->has('intent')) {
-            return $this->fail(400, $request->all(), 'Invalid intent structure');
-        }
+        $this->validate($request, [
+            'intent.name' => 'required',
+            'intent.confidence' => 'required',
+            'text' => 'required'
+        ]);
 
         $requestData = $request->all();
         try {

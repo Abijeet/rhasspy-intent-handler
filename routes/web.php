@@ -13,8 +13,4 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
-
-$router->post('/api/rhasspy-handler', 'IntentHandlerController@handle');
+$router->post('/api/handle', 'IntentHandlerController@handle');
