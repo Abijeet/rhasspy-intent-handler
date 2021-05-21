@@ -33,8 +33,8 @@ class IntentHandlerController extends Controller
             return $this->sendSpeech(__('rhasspy_error_confused'));
         }
 
-        $intentHandlerService->handle($intent);
-        return $this->sendSpeech(__('rhasspy_success_please_wait'));
+        $result = $intentHandlerService->handle($intent);
+        return $this->sendSpeech($result);
     }
 
     protected function sendSpeech(string $speechText): JsonResponse {

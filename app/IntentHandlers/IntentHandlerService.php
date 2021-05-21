@@ -9,9 +9,9 @@ class IntentHandlerService
 {
     public function __construct(private IntentHandlerFactory $factory) {}
 
-    public function handle(Intent $intent): void {
+    public function handle(Intent $intent): string {
         $handler = $this->factory->getHandler($intent);
-        $handler->handle($intent);
+        return $handler->handle($intent);
     }
 
     public function isIntentValid(Intent $intent): bool {

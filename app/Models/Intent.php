@@ -7,11 +7,10 @@ class Intent
 {
     public function __construct(
         private string $name,
-        private int $confidence,
+        private float $confidence,
         private array $entities,
         private string $text,
-        private string $rawText,
-        private string $sessionId
+        private string $rawText
     ) {}
 
     public function isConfident(): bool {
@@ -28,8 +27,7 @@ class Intent
             $requestData['intent']['confidence'],
             $requestData['entities'],
             $requestData['text'],
-            $requestData['raw_text'],
-            $requestData['sessionId']
+            $requestData['raw_text']
         );
     }
 }

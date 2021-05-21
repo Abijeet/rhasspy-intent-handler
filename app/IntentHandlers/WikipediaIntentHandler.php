@@ -25,9 +25,10 @@ class WikipediaIntentHandler implements IntentHandler
         return self::NAME;
     }
 
-    public function handle(Intent $intent): void {
+    public function handle(Intent $intent): string {
         // TODO:
         $searchText = $this->queryBuilder->get();
         $queryResult = $this->queryHandler->getQueryResult($searchText);
+        return $queryResult->getResult();
     }
 }

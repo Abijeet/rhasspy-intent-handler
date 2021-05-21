@@ -10,7 +10,7 @@
 			"request": "launch",
 			"port": 9003,
             "pathMappings": {
-                "/vagrant/code/rhasspy-handler-api": "${workspaceFolder}"
+                "/vagrant/code/rhasspy-intent-handler": "${workspaceFolder}"
             }
 		},
 		{
@@ -20,7 +20,7 @@
 			"program": "${file}",
 			"cwd": "${fileDirname}",
             "pathMappings": {
-                "/vagrant/code/rhasspy-handler-api": "${workspaceFolder}"
+                "/vagrant/code/rhasspy-intent-handler": "${workspaceFolder}"
             },
 			"port": 9003
 		}

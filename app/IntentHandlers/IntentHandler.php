@@ -11,5 +11,5 @@ interface IntentHandler
 
     public function getName(): string;
 
-    public function handle(Intent $intent): void;
+    public function handle(Intent $intent): string;
 }
