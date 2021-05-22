@@ -25,7 +25,8 @@ class AppServiceProvider extends ServiceProvider
                 return new AudioQueryBuilder(
                     config('audio.recorder'),
                     config('audio.args'),
-                    config('audio.fileFormat')
+                    config('audio.fileFormat'),
+                    config('audio.timeoutSecs')
                 );
             }
         );

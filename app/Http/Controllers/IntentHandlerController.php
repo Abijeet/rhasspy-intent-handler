@@ -25,6 +25,8 @@ class IntentHandlerController extends Controller
             return $this->error(500, 1001, $requestData, 'There was an error while parsing the Intent', $t);
         }
 
+        // TODO: On a Raspberry Pi this might take a while, so return "Please wait"
+        // and then run a background job to fetch the query.
         $speechText = $intentHandlerService->handle($intent);
         return $this->sendSpeech($speechText);
     }
