@@ -7,27 +7,32 @@ use App\Exceptions\QueryResultError;
 use App\Exceptions\QueryResultNotFound;
 use App\SearchQuery\Results\WikipediaQueryResult;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
 
 class WikipediaQueryHandler implements QueryHandler {
     private const API = 'https://en.wikipedia.org/api/rest_v1/page/summary/';
 
     public function getQueryResult(string $query): WikipediaQueryResult {
-        // https://en.wikipedia.org/api/rest_v1/page/summary/Gargoyle
-        $client = new Client();
-        $response = $client->request('GET', self::API . str_replace(' ', '_', $query), [
-            'headers' => [
-                'Accept' => 'application/json',
-            ]
-        ]);
-        $httpCode = $response->getStatusCode();
-        $body = $response->getBody()->getContents();
+        try {
+            // https://en.wikipedia.org/api/rest_v1/page/summary/Gargoyle
+            $client = new Client();
+            $response = $client->request('GET', self::API . str_replace(' ', '_', $query), [
+                'headers' => [
+                    'Accept' => 'application/json',
+                ]
+            ]);
 
-        if ($httpCode === 200) {
+            $httpCode = $response->getStatusCode();
+            $body = $response->getBody()->getContents();
             $jsonData = json_decode($body, true);
             return WikipediaQueryResult::fromJson( $jsonData );
-        } else if ($httpCode === 404) {
-            throw new QueryResultNotFound("The Wikipedia article was not found for: $query");
-        } else {
+        } catch (BadResponseException $e) {
+            if ($e->getCode() === 404) {
+                throw new QueryResultNotFound("The Wikipedia article was not found for: $query");
+            }
+
+            $httpCode = $e->getCode();
+            $body = $e->hasResponse() ? $e->getResponse()->getBody(): 'N/A';
             throw new QueryResultError(
                 "There was an error while fetching the Wikipedia article for: $query." .
                 " HTTP Code: $httpCode;\n Response: $body"
