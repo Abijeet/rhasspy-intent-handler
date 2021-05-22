@@ -1,5 +1,8 @@
 {
     "rhasspy_success_please_wait": "A moment please",
     "rhasspy_error_unknown": "Sorry, I do not know how to respond to that.",
-    "rhasspy_error_confused": "I did not understand that, could you please repeat it?"
+    "rhasspy_error_confused": "I did not understand that, could you please repeat it?",
+    "rhasspy_wiki_query_not_found": "We could not find any results for :query",
+    "rhasspy_wiki_query_error": "There was an error while fetching results for :query",
+    "rhasspy_unknown_processing_error": "There was an unknown error when processing your query."
 }

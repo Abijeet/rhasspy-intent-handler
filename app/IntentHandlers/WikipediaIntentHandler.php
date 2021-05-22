@@ -3,9 +3,12 @@ declare( strict_types = 1 );
 
 namespace App\IntentHandlers;
 
+use App\Exceptions\QueryResultError;
+use App\Exceptions\QueryResultNotFound;
 use App\Models\Intent;
 use App\SearchQuery\Builders\QueryBuilder;
 use App\SearchQuery\Handlers\WikipediaQueryHandler;
+use Exception;
 
 class WikipediaIntentHandler implements IntentHandler
 {
@@ -26,9 +29,19 @@ class WikipediaIntentHandler implements IntentHandler
     }
 
     public function handle(Intent $intent): string {
-        // TODO:
         $searchText = $this->queryBuilder->get();
-        $queryResult = $this->queryHandler->getQueryResult($searchText);
-        return $queryResult->getResult();
+
+        try {
+            $queryResult = $this->queryHandler->getQueryResult($searchText);
+            return $queryResult->getResult();
+        } catch (QueryResultNotFound $e) {
+            return __('rhasspy_wiki_query_not_found', ['query' => $searchText]);
+        } catch (QueryResultError $e) {
+            report($e);
+            return __('rhasspy_wiki_query_error', ['query' => $searchText]);
+        } catch (Exception $e) {
+            report($e);
+            return __('rhasspy_unknown_processing_error');
+        }
     }
 }

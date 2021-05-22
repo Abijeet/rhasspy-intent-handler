@@ -25,16 +25,8 @@ class IntentHandlerController extends Controller
             return $this->error(500, 1001, $requestData, 'There was an error while parsing the Intent', $t);
         }
 
-        if (!$intentHandlerService->isIntentValid($intent)) {
-            return $this->sendSpeech(__('rhasspy_error_unknown'));
-        }
-
-        if (!$intent->isConfident()) {
-            return $this->sendSpeech(__('rhasspy_error_confused'));
-        }
-
-        $result = $intentHandlerService->handle($intent);
-        return $this->sendSpeech($result);
+        $speechText = $intentHandlerService->handle($intent);
+        return $this->sendSpeech($speechText);
     }
 
     protected function sendSpeech(string $speechText): JsonResponse {
