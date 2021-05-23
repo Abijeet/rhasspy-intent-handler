@@ -8,6 +8,7 @@ use App\IntentHandlers\WikipediaIntentHandler;
 use App\SearchQuery\Builders\AudioQueryBuilder;
 use App\SearchQuery\Builders\QueryBuilder;
 use App\SearchQuery\Handlers\WikipediaQueryHandler;
+use App\SpeechToText\AzureSpeechToTextProvider;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -36,6 +37,15 @@ class AppServiceProvider extends ServiceProvider
                 return new WikipediaIntentHandler(
                     $app->make(QueryBuilder::class),
                     $app->make(WikipediaQueryHandler::class)
+                );
+            }
+        );
+
+        $this->app->singleton(
+            AzureSpeechToTextProvider::class, function(): AzureSpeechToTextProvider {
+                return new AzureSpeechToTextProvider(
+                    env('AZURE_SUBSCRIPTION_KEY'),
+                    env('AZURE_REGION')
                 );
             }
         );

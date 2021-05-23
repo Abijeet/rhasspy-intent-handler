@@ -14,3 +14,5 @@
 */
 
 $router->post('/api/handle', 'IntentHandlerController@handle');
+
+$router->post('/api/azure/transcribe', 'TestController@azureTranscribeAudio');
