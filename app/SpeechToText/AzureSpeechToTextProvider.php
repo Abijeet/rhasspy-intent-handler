@@ -88,7 +88,6 @@ class AzureSpeechToTextProvider extends SpeechToTextProvider {
                 'Message: ' . $message
             );
         }
-
     }
 
     private function parseResponse(ResponseInterface $response): SpeechToTextResponse {

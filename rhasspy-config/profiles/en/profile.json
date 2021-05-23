@@ -1,0 +1,65 @@
+{
+    "dialogue": {
+        "system": "rhasspy"
+    },
+    "handle": {
+        "remote": {
+            "url": "http://172.17.0.1:8888/rhasspy-intent-handler/public/api/handle"
+        },
+        "system": "remote"
+    },
+    "intent": {
+        "system": "fsticuffs"
+    },
+    "microphone": {
+        "arecord": {
+            "device": "mixin"
+        },
+        "command": {
+            "channels": "2",
+            "list_arguments": "",
+            "record_arguments": "-r 8000 -f S16_LE -D mixin",
+            "record_program": "arecord",
+            "sample_rate": "4000",
+            "sample_width": "2"
+        },
+        "pyaudio": {
+            "device": "20"
+        },
+        "system": "command"
+    },
+    "sounds": {
+        "aplay": {
+            "device": "sysdefault:CARD=Seri"
+        },
+        "system": "aplay"
+    },
+    "speech_to_text": {
+        "system": "kaldi"
+    },
+    "text_to_speech": {
+        "larynx": {
+            "default_voice": "cmu_rms"
+        },
+        "system": "larynx"
+    },
+    "wake": {
+        "porcupine": {
+            "keyword_path": "jarvis_linux.ppn",
+            "sensitivity": "0.6"
+        },
+        "raven": {
+            "average_templates": false,
+            "keywords": {
+                "Hey Buddy": {
+                    "enabled": true
+                },
+                "Jarvis": {
+                    "enabled": true
+                }
+            },
+            "probability_threshold": "0.6"
+        },
+        "system": "raven"
+    }
+}
