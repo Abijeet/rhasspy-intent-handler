@@ -3,7 +3,7 @@ rhasspy:
   container_name: rhasspy
   restart: unless-stopped
   volumes:
-      - "$HOME/.config/rhasspy/profiles:/profiles"
+      - "./profiles:/profiles"
       - "/etc/localtime:/etc/localtime:ro"
   ports:
       - "12101:12101"
