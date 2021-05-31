@@ -1,0 +1,14 @@
+version: '3.4'
+services:
+  api:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile.php8
+    volumes:
+      - ./:/var/www/html
+      # Don't sync the rhasspy folder
+      # https://stackoverflow.com/a/37898591/903324
+      - /rhasspy/
+    command: sh -c "/usr/local/bin/init.sh && exec apache2-foreground"
+    ports:
+      - "8888:80"
