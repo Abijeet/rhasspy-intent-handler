@@ -9,5 +9,10 @@ RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
+# Sound recording utilities
+RUN apt-get update && apt-get upgrade --yes
+RUN apt-get install --yes --no-install-recommends \
+    sox alsa-utils libasound2-plugins
+
 EXPOSE 80
 

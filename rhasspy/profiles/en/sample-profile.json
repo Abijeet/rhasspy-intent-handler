@@ -18,9 +18,9 @@
         "command": {
             "channels": "2",
             "list_arguments": "",
-            "record_arguments": "-f S16_LE -Dplug:mixin -c 2",
+            "record_arguments": "-f S16_LE",
             "record_program": "arecord",
-            "sample_rate": "8000",
+            "sample_rate": "4000",
             "sample_width": "2"
         },
         "pyaudio": {
