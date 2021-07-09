@@ -4,7 +4,7 @@
     },
     "handle": {
         "remote": {
-            "url": "http://172.17.0.1:8888/rhasspy-intent-handler/public/api/handle"
+            "url": "http://172.17.0.1:8888/public/api/handle"
         },
         "system": "remote"
     },
