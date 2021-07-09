@@ -20,10 +20,10 @@ class AudioQueryBuilder implements QueryBuilder {
         $recordingPath = $this->getRecordingPath();
         $audioCaptureCommand = $this->runCommand($recordingPath);
 
-        if (file_exists($recordingPath)) {
+        if (!file_exists($recordingPath)) {
             throw new QueryBuilderError(
                 "No audio file was generated for the search query." .
-                "\nCapture command: $audioCaptureCommand"
+                "\nCapture command: {$audioCaptureCommand->getCommandLine()}"
             );
         }
 
@@ -37,11 +37,11 @@ class AudioQueryBuilder implements QueryBuilder {
         return $fullPath;
     }
 
-    private function runCommand(string $fullPath): void {
-        $audioCaptureCommand =  "{$this->recorder} {$this->args} $fullPath";
+    private function runCommand(string $fullPath): Process {
+        $audioCaptureCommand =  "{$this->recorder} {$this->args} -d {$this->timeoutSecs} -N $fullPath";
 
         $process = Process::fromShellCommandline($audioCaptureCommand);
-        $process->setTimeout($this->timeoutSecs);
+        $process->setTimeout($this->timeoutSecs + 1);
         $process->run();
 
         if (!$process->isSuccessful()) {
@@ -51,5 +51,7 @@ class AudioQueryBuilder implements QueryBuilder {
                 "\nError output: " . $process->getErrorOutput()
             );
         }
+
+        return $process;
     }
 }
