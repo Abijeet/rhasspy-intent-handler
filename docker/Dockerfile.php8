@@ -14,5 +14,7 @@ RUN apt-get update && apt-get upgrade --yes
 RUN apt-get install --yes --no-install-recommends \
     sox alsa-utils libasound2-plugins
 
+# Add apache user to www-data
+RUN usermod -a -G audio www-data
 EXPOSE 80
 
