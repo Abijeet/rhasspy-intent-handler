@@ -1,17 +1,18 @@
-rhasspy:
-  image: "rhasspy/rhasspy"
-  container_name: rhasspy
-  restart: unless-stopped
-  ipc: host
-  volumes:
-      - "./profiles:/profiles"
-      - "/etc/localtime:/etc/localtime:ro"
-      # Copy the alsa config from host
-      - "/etc/asound.conf:/etc/asound.conf"
-  ports:
-      - "12101:12101"
-      - "12183:12183"
-  devices:
-      # share the sound device
-      - "/dev/snd:/dev/snd"
-  command: --user-profiles /profiles --profile en
+services:
+  rhasspy:
+    image: "rhasspy/rhasspy"
+    container_name: rhasspy
+    # restart: unless-stopped
+    ipc: host
+    volumes:
+        - "./profiles:/profiles"
+        - "/etc/localtime:/etc/localtime:ro"
+        # Copy the alsa config from host
+        - "/etc/asound.conf:/etc/asound.conf"
+    ports:
+        - "12101:12101"
+        - "12183:12183"
+    devices:
+        # share the sound device
+        - "/dev/snd:/dev/snd"
+    command: --user-profiles /profiles --profile en
