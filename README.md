@@ -1,26 +1,27 @@
-# Rhasspy Intent Handler
+# Saathi
+
+> (_साथी_ - Hindi): Sidekick
 
 An HTTP intent handler for [Rhasspy](https://rhasspy.readthedocs.io/en/latest/) to emulate a personal assistant.
 
-- [Rhasspy Intent Handler](#rhasspy-intent-handler)
-  - [What can it do?](#what-can-it-do)
-  - [How does it work?](#how-does-it-work)
-    - [For intents using custom words](#for-intents-using-custom-words)
-    - [General intents](#general-intents)
-  - [Development environment](#development-environment)
-    - [Useful commands](#useful-commands)
-  - [License](#license)
+- [What can it do?](#what-can-it-do)
+- [How does it work?](#how-does-it-work)
+  - [For intents using custom words](#for-intents-using-custom-words)
+  - [General intents](#general-intents)
+- [Development environment](#development-environment)
+  - [Useful commands](#useful-commands)
+- [License](#license)
 
 ## What can it do?
 
 1. Query Wikipedia for certain queries. Example:
    * Who is Barack Obama?
    * Tell me about Delhi
-2. TODO: Tell me the weather info in `{my city}` ?
+2. TODO: How is the weather in `{my city}`
 3. TODO: What is the time in Delhi?
 4. TODO: Schedule events. Example:
    * Remind me to water the plants at 7:00 PM today
-5. More?
+5. TODO: Send me directions to `{location}`
 
 ## How does it work?
 
