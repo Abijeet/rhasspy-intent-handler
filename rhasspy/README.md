@@ -10,6 +10,6 @@ docker-compose up
 
 The `profiles/en` folder contains two files:
 1. `sentences.ini` - Contains the sentences to trigger this Rhasspy intent
-2.`sample-profile.json` - Contains the sample profile that I currently use. Use this as an example, but it probably will **NOT** work for you without tweaks based on your hardware.
+2. `sample-profile.json` - Contains the sample profile that I currently use. Use this as an example, but it probably will **NOT** work for you without tweaks based on your hardware.
 
-There is another file `asound.conf` that contains a custom [dsnoop](https://alsa.opensrc.org/Dsnoop) interface in order to allow the microphone to be used between two applications at the same time. This can be modified as per your hardware configuration and then copied to `/etc/asound.conf`.
+There is another file `asound.conf` that contains a custom [dsnoop](https://alsa.opensrc.org/Dsnoop) interface in order to allow the microphone to be used between two applications at the same time. This can be modified as per your hardware configuration and then copied to `/etc/asound.conf` on the **host machine**.

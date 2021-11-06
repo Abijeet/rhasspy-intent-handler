@@ -18,7 +18,7 @@
         "command": {
             "channels": "2",
             "list_arguments": "",
-            "record_arguments": "-f S16_LE",
+            "record_arguments": "-f S16_LE -D default",
             "record_program": "arecord",
             "sample_rate": "4000",
             "sample_width": "2"
@@ -30,7 +30,7 @@
     },
     "sounds": {
         "aplay": {
-            "device": "sysdefault:CARD=Seri"
+            "device": "default"
         },
         "system": "aplay"
     },
