@@ -12,7 +12,10 @@ RUN mv composer.phar /usr/local/bin/composer
 # Sound recording utilities
 RUN apt-get update && apt-get upgrade --yes
 RUN apt-get install --yes --no-install-recommends \
-    sox alsa-utils libasound2-plugins
+    sox alsa-utils libasound2-plugins libzip-dev
+
+# php extensions
+RUN docker-php-ext-install zip
 
 # Add apache user to www-data
 RUN usermod -a -G audio www-data
