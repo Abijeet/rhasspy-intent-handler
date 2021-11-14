@@ -1,0 +1,35 @@
+{
+	"info": {
+		"_postman_id": "e715ac38-74f2-4876-8097-03c790c9f501",
+		"name": "saathi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Intent Handler - Wikipedia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"intent\": {\n        \"name\": \"Wikipedia\",\n        \"confidence\": 0.9\n    },\n    \"entities\": [],\n    \"text\": \"Bloody\",\n    \"raw_text\": \"Bloody\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/handle",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"handle"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
