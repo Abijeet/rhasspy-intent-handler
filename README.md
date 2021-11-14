@@ -2,7 +2,7 @@
 
 > (_साथी_ - Hindi): Sidekick
 
-An HTTP intent handler for [Rhasspy](https://rhasspy.readthedocs.io/en/latest/) to emulate a personal assistant.
+An HTTP intent handler for [Rhasspy](https://rhasspy.readthedocs.io/en/latest/) built to emulate a personal assistant.
 
 - [What can it do?](#what-can-it-do)
 - [How does it work?](#how-does-it-work)

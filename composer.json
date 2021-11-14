@@ -1,7 +1,7 @@
 {
-    "name": "abijeet/rhasspy-handler-api",
-    "description": "HTTP API to handle Rhasspy intents",
-    "keywords": ["rhasspy", "lumen"],
+    "name": "abijeet/saathi",
+    "description": "Personal assistant based on Rhasspy and Lumen",
+    "keywords": ["rhasspy", "personal-assistant"],
     "license": "MIT",
     "type": "project",
     "require": {
