@@ -3,7 +3,7 @@ declare( strict_types = 1 );
 
 return [
     'recorder' => 'arecord',
-    'args' => '-r 8000 -f S16_LE',
+    'args' => '-f cd -D pcm.rhasspy_capture',
     'timeoutSecs' => 3,
     'fileFormat' => 'wav'
 ];
