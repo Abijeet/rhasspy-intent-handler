@@ -4,9 +4,9 @@ declare( strict_types = 1 );
 namespace App\SearchQuery\Results;
 
 class WikipediaQueryResult implements QueryResult {
-    private const MAX_CHARS = 150;
+    private const MAX_CHARS = 180;
 
-    private const MAX_SENTENCES = 2;
+    private const MAX_SENTENCES = 3;
 
     private ?string $parsedText;
 

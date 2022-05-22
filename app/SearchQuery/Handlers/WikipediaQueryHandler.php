@@ -14,6 +14,10 @@ class WikipediaQueryHandler implements QueryHandler {
 
     public function getQueryResult(string $query): WikipediaQueryResult {
         try {
+            // Trim and clean up the search query before pinging Wikipedia
+            $query = trim( rtrim( $query, ".\n") );
+            info( "Querying Wikipedia for $query" );
+
             // https://en.wikipedia.org/api/rest_v1/page/summary/Gargoyle
             $client = new Client();
             $response = $client->request('GET', self::API . str_replace(' ', '_', $query), [

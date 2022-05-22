@@ -32,6 +32,7 @@ class AzureSpeechToTextProvider extends SpeechToTextProvider {
                 $format = 'audio/ogg; codecs=opus';
             }
 
+            // Documentation: https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-speech-to-text-short
             $transcriptionURL = "https://{$this->region}.stt.speech.microsoft.com/" .
                 "speech/recognition/conversation/cognitiveservices/v1";
             $response = $client->request('POST', $transcriptionURL, [
@@ -40,7 +41,7 @@ class AzureSpeechToTextProvider extends SpeechToTextProvider {
                     'Accept' => 'application/json',
                     'Content-type' => $format
                 ],
-                'body' =>file_get_contents($audioPath),
+                'body' => file_get_contents($audioPath),
                 'query' => [
                     'language' => $language
                 ]

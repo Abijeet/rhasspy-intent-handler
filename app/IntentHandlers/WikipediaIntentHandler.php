@@ -32,6 +32,9 @@ class WikipediaIntentHandler implements IntentHandler
     public function handle(Intent $intent): string {
         try {
             $searchText = $this->queryBuilder->get();
+            if ( !$searchText ) {
+                return __('empty_search_query');
+            }
             $queryResult = $this->queryHandler->getQueryResult($searchText);
             return $queryResult->getResult();
         } catch (QueryBuilderError $e) {

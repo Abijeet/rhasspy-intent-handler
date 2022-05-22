@@ -27,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
                     config('audio.recorder'),
                     config('audio.args'),
                     config('audio.fileFormat'),
-                    config('audio.timeoutSecs')
+                    config('audio.timeoutSecs'),
+                    $this->app->make(AzureSpeechToTextProvider::class)
                 );
             }
         );

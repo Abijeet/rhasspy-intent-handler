@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 namespace App\SearchQuery\Builders;
 
 use App\Exceptions\QueryBuilderError;
+use App\SpeechToText\SpeechToTextProvider;
 use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;
 
@@ -12,7 +13,8 @@ class AudioQueryBuilder implements QueryBuilder {
         private string $recorder,
         private string $args,
         private string $fileFormat,
-        private float $timeoutSecs
+        private float $timeoutSecs,
+        private SpeechToTextProvider $speechToTextProvider
     ) {}
 
     public function get(): string {
@@ -28,7 +30,8 @@ class AudioQueryBuilder implements QueryBuilder {
         }
 
         // TODO: Undo this hardcoded value
-        return 'Jarvis Iron Man';
+        $speechToText = $this->speechToTextProvider->transcribe($recordingPath, 'cd', 'en-IN');
+        return $speechToText->getTranscript();
     }
 
     private function getRecordingPath(): string {
