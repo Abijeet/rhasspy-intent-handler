@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Providers;
 
@@ -13,42 +14,46 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register(): void
-    {
-        $this->app->singleton(
-            IntentHandlerService::class, function () {
-                return new IntentHandlerService(new IntentHandlerFactory());
-            }
-        );
+	public function register(): void
+	{
+		$this->app->singleton(
+			IntentHandlerService::class,
+			function () {
+				return new IntentHandlerService(new IntentHandlerFactory());
+			}
+		);
 
-        $this->app->singleton(
-            QueryBuilder::class, function(): QueryBuilder {
-                return new AudioQueryBuilder(
-                    config('audio.recorder'),
-                    config('audio.args'),
-                    config('audio.fileFormat'),
-                    config('audio.timeoutSecs'),
-                    $this->app->make(AzureSpeechToTextProvider::class)
-                );
-            }
-        );
+		$this->app->singleton(
+			QueryBuilder::class,
+			function (): QueryBuilder {
+				return new AudioQueryBuilder(
+					config('audio.recorder'),
+					config('audio.args'),
+					config('audio.fileFormat'),
+					config('audio.timeoutSecs'),
+					$this->app->make(AzureSpeechToTextProvider::class)
+				);
+			}
+		);
 
-        $this->app->singleton(
-            WikipediaIntentHandler::class, function($app): WikipediaIntentHandler {
-                return new WikipediaIntentHandler(
-                    $app->make(QueryBuilder::class),
-                    $app->make(WikipediaQueryHandler::class)
-                );
-            }
-        );
+		$this->app->singleton(
+			WikipediaIntentHandler::class,
+			function ($app): WikipediaIntentHandler {
+				return new WikipediaIntentHandler(
+					$app->make(QueryBuilder::class),
+					$app->make(WikipediaQueryHandler::class)
+				);
+			}
+		);
 
-        $this->app->singleton(
-            AzureSpeechToTextProvider::class, function(): AzureSpeechToTextProvider {
-                return new AzureSpeechToTextProvider(
-                    env('AZURE_SUBSCRIPTION_KEY'),
-                    env('AZURE_REGION')
-                );
-            }
-        );
-    }
+		$this->app->singleton(
+			AzureSpeechToTextProvider::class,
+			function (): AzureSpeechToTextProvider {
+				return new AzureSpeechToTextProvider(
+					env('AZURE_SUBSCRIPTION_KEY'),
+					env('AZURE_REGION')
+				);
+			}
+		);
+	}
 }

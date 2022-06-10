@@ -1,20 +1,21 @@
 <?php
-declare( strict_types = 1 );
+declare(strict_types=1);
+
+namespace Tests\IntentHandler;
 
 use App\SearchQuery\Builders\QueryBuilder;
-use Laravel\Lumen\Testing\TestCase;
+use Tests\TestCase;
 
-class WikipediaIntentHandlerTest extends TestCase {
-    public function testQueryResultNotFound() {
-        $queryBuilder = $this->getMockBuilder(QueryBuilder::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+class WikipediaIntentHandlerTest extends TestCase
+{
+	public function testQueryResultNotFound()
+	{
+		$queryBuilder = $this->getMockBuilder(QueryBuilder::class)
+			->disableOriginalConstructor()
+			->getMock();
 
-        $queryBuilder->expects( $this->once() )
-            ->method( 'get' )
-            ->will( $this->returnValue( 'Invalid string 1234545' ) );
-
-        $query
-
-    }
+		$queryBuilder->expects($this->once())
+			->method('get')
+			->will($this->returnValue('Invalid string 1234545'));
+	}
 }

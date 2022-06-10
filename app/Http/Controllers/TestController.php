@@ -1,5 +1,5 @@
 <?php
-declare( strict_types = 1 );
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -9,14 +9,15 @@ use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    public function azureTranscribeAudio(Request $request, AzureSpeechToTextProvider $speechToText) {
-        $this->validate($request, [
-            'audio' => 'required|file',
-        ]);
+	public function azureTranscribeAudio(Request $request, AzureSpeechToTextProvider $speechToText)
+	{
+		$this->validate($request, [
+			'audio' => 'required|file',
+		]);
 
-        $audio = $request->file('audio');
-        $audioPath = $audio->getPath() . '/'  . $audio->getFilename();
+		$audio = $request->file('audio');
+		$audioPath = $audio->getPath() . '/' . $audio->getFilename();
 
-        return $speechToText->transcribe($audioPath, SpeechToTextProvider::WAV_AUDIO_FORMAT, 'en-IN');
-    }
+		return $speechToText->transcribe($audioPath, SpeechToTextProvider::WAV_AUDIO_FORMAT, 'en-IN');
+	}
 }

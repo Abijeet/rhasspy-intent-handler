@@ -1,5 +1,5 @@
 <?php
-declare( strict_types = 1 );
+declare(strict_types=1);
 
 namespace App\Console\Commands;
 
@@ -8,15 +8,16 @@ use Illuminate\Console\Command;
 
 class AudioRecorderCommand extends Command
 {
-    protected $signature = 'record-audio';
-    protected $description = 'Audio recording tester';
+	protected $signature = 'record-audio';
+	protected $description = 'Audio recording tester';
 
-    public function __construct() {
-        parent::__construct();
-    }
+	public function __construct()
+	{
+		parent::__construct();
+	}
 
-    public function handle(QueryBuilder $queryBuilder)
-    {
-        $this->info( $queryBuilder->get() );
-    }
+	public function handle(QueryBuilder $queryBuilder)
+	{
+		$this->info($queryBuilder->get());
+	}
 }
