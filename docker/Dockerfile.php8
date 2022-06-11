@@ -16,6 +16,8 @@ RUN apt-get install --yes --no-install-recommends \
 
 # php extensions
 RUN docker-php-ext-install zip
+RUN pecl install ast-1.0.14
+RUN echo "extension=ast.so" > /usr/local/etc/php/conf.d/docker-php-ext-ast.ini
 
 # Add apache user to www-data
 RUN usermod -a -G audio www-data

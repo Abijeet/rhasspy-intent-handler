@@ -79,7 +79,7 @@ class AzureSpeechToTextProvider extends SpeechToTextProvider
 			]);
 
 			$azureAccessKey = $response->getBody()->getContents();
-			Cache::put('azure_access_key', $azureAccessKey, self::CACHE_TIMEOUT_SECS);
+			Cache::put('azure_access_key', $azureAccessKey, (int) self::CACHE_TIMEOUT_SECS);
 			return $azureAccessKey;
 		} catch (BadResponseException $e) {
 			report($e);
@@ -96,8 +96,8 @@ class AzureSpeechToTextProvider extends SpeechToTextProvider
 
 	private function parseResponse(ResponseInterface $response): SpeechToTextResponse
 	{
-		$json = json_decode($response->getBody()->getContents(), true);
-		if ($json === false) {
+		$parsedResponse = json_decode($response->getBody()->getContents(), true);
+		if (!$parsedResponse) {
 			throw new TranscriptionError(
 				"There was an error while parsing the response from Azure. " .
 				"Response: " . $response->getBody()->getContents() .
@@ -106,16 +106,16 @@ class AzureSpeechToTextProvider extends SpeechToTextProvider
 		}
 
 		// https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-speech-to-text#sample-responses
-		if (strtolower($json['RecognitionStatus']) !== 'success') {
+		if (strtolower($parsedResponse['RecognitionStatus']) !== 'success') {
 			throw new TranscriptionError(
 				'Azure could not successfully transcribe the audio.' .
 				'Response: ' . $response->getBody()->getContents()
 			);
 		}
 
-		if (isset($json['NBest'])) {
+		if (isset($parsedResponse['NBest'])) {
 			$words = [];
-			$transcription = $json['NBest'][0];
+			$transcription = $parsedResponse['NBest'][0];
 			foreach ($transcription['Words'] as $word) {
 				$words[] = $word['Word'];
 			}
@@ -126,7 +126,7 @@ class AzureSpeechToTextProvider extends SpeechToTextProvider
 				$words
 			);
 		} else {
-			return new SpeechToTextResponse($json['DisplayText']);
+			return new SpeechToTextResponse($parsedResponse['DisplayText']);
 		}
 	}
 }

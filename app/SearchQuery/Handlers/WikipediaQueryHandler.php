@@ -28,7 +28,6 @@ class WikipediaQueryHandler implements QueryHandler
 				]
 			]);
 
-			$httpCode = $response->getStatusCode();
 			$body = $response->getBody()->getContents();
 			$jsonData = json_decode($body, true);
 			return WikipediaQueryResult::fromJson($jsonData);

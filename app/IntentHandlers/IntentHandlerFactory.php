@@ -39,5 +39,7 @@ class IntentHandlerFactory
 				return $instance;
 			}
 		}
+
+		return null;
 	}
 }

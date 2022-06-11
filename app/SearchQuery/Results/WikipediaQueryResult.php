@@ -22,7 +22,7 @@ class WikipediaQueryResult implements QueryResult
 		$this->parsedText = '';
 	}
 
-	public function getResult(): ?string
+	public function getResult(): string
 	{
 		if ($this->parsedText) {
 			return $this->parsedText;

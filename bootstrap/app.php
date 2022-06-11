@@ -108,6 +108,7 @@ $app->register(App\Providers\AppServiceProvider::class);
 
 $app->router->group([
 	'namespace' => 'App\Http\Controllers',
+	// @phan-suppress-next-line PhanUnusedClosureParameter This is used in web.php
 ], function ($router) {
 	require __DIR__ . '/../routes/web.php';
 });

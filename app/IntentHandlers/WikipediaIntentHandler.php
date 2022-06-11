@@ -43,7 +43,7 @@ class WikipediaIntentHandler implements IntentHandler
 		} catch (QueryBuilderError $e) {
 			report($e);
 			return __('rhasspy_audio_query_builder_error');
-		} catch (QueryResultNotFound $e) {
+		} catch (QueryResultNotFound) {
 			return __('rhasspy_wiki_query_not_found', ['query' => $searchText]);
 		} catch (QueryResultError $e) {
 			report($e);

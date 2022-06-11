@@ -10,7 +10,7 @@ abstract class TestCase extends BaseTestCase
 	/**
 	 * Creates the application.
 	 *
-	 * @return \Laravel\Lumen\Application
+	 * @return \Symfony\Component\HttpKernel\HttpKernelInterface
 	 */
 	public function createApplication()
 	{
