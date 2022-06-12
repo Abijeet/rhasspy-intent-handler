@@ -1,0 +1,41 @@
+name: Run unit tests
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['8.0']
+    steps:
+    - name: Checkout app
+      uses: actions/checkout@v2
+
+    - name: Install PHP dependencies
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        tools: pecl
+        extensions: ast
+
+    - name: Get Composer cache directory
+      id: composer-cache
+      run: |
+        echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+    - name: Check Composer cache
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+
+    - name: Install dependencies
+      run: composer install
+
+    - name: Run unit tests
+      run: ./vendor/bin/phpunit
+

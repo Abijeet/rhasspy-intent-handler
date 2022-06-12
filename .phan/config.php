@@ -26,7 +26,6 @@ return [
         'resources',
         'routes',
         'storage',
-        'tests',
         'bootstrap',
         'vendor/illuminate',
         'vendor/laravel',
