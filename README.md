@@ -14,14 +14,14 @@ An HTTP intent handler for [Rhasspy](https://rhasspy.readthedocs.io/en/latest/) 
 
 ## What can it do?
 
-1. Query Wikipedia for certain queries. Example:
+- [ ] Query Wikipedia for certain queries. Example:
    * Who is Barack Obama?
    * Tell me about Delhi
-2. TODO: How is the weather in `{my city}`
-3. TODO: What is the time in Delhi?
-4. TODO: Schedule events. Example:
+- [ ] How is the weather in `{my city}`
+- [ ] What is the time in Delhi?
+- [ ] Schedule events. Example:
    * Remind me to water the plants at 7:00 PM today
-5. TODO: Send me directions to `{location}`
+- [ ] Send me directions to `{location}`
 
 ## How does it work?
 
@@ -38,9 +38,9 @@ So the above will match *set the light to red / green / blue*, but it cannot rec
 
 Basically Rhasspy [does not support custom / untrained words in sentences](https://community.rhasspy.org/t/recognized-untrain-sentences-words/465/7).
 
-To circumvent this, we define the sentence simply as `set the light to`, and then trigger user's voice recording on the HTTP API.
+To circumvent this, we define the sentence simply as `set the light to`, and then trigger voice recording via the HTTP API.
 
-We then use various speech to text services to convert this to text, and then use that output to determine what to do.
+Various speech to text services are used to convert the audio to text, and then use that output to determine what to do.
 
 ### General intents
 
@@ -54,12 +54,33 @@ The API uses [Lumen](https://lumen.laravel.com/).
 
 Go through the [`README.md` file under the `rhasspy`](./rhasspy/README.md) folder to setup get Rhasspy running in another docker.
 
-### Useful commands
+### Development setup
+```sh
+# Login to the development docker
+docker exec -it saathi-api-1 /bin/bash
+
+# Install stuff
+composer install
+
+# Run code sniffer
+cd /var/www/html
+composer lint
+## Fix automatic fixable issues
+composer lint:fix
+
+# Run static analysis
+cd /var/www/html
+composer phan
+
+# Run test cases
+./vendor/bin/phpunit
 ```
+
+### Other useful commands
+```sh
 # Run commands as apache user after logging into development docker
 su -l www-data -s /bin/bash
 ```
-
 ## License
 
 This software is open-sourced and licensed under the [MIT license](https://opensource.org/licenses/MIT).
