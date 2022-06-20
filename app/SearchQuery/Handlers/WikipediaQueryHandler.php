@@ -20,12 +20,13 @@ class WikipediaQueryHandler implements QueryHandler
 			$query = trim(rtrim($query, ".\n"));
 			info("Querying Wikipedia for $query");
 
-			// https://en.wikipedia.org/api/rest_v1/page/summary/Gargoyle
+			// Example: https://en.wikipedia.org/api/rest_v1/page/summary/Gargoyle
 			$client = new Client();
 			$response = $client->request('GET', self::API . str_replace(' ', '_', $query), [
 				'headers' => [
 					'Accept' => 'application/json',
-				]
+				],
+				'allow_redirects' => true
 			]);
 
 			$body = $response->getBody()->getContents();
