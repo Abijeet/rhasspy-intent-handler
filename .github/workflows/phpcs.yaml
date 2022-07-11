@@ -1,4 +1,4 @@
-name: Run code quality checks
+name: Coding standard
 on:
   push:
     branches: [ main ]

@@ -2,6 +2,10 @@
 
 > (_साथी_ - Hindi): Sidekick
 
+![Unit tests](https://github.com/Abijeet/saathi/actions/workflows/phpunit.yaml/badge.svg)
+![Static analysis](https://github.com/Abijeet/saathi/actions/workflows/phan.yaml/badge.svg)
+![Coding standard](https://github.com/Abijeet/saathi/actions/workflows/phpcs.yaml/badge.svg)
+
 An HTTP intent handler for [Rhasspy](https://rhasspy.readthedocs.io/en/latest/) built to emulate a personal assistant.
 
 - [What can it do?](#what-can-it-do)
@@ -9,7 +13,8 @@ An HTTP intent handler for [Rhasspy](https://rhasspy.readthedocs.io/en/latest/) 
   - [For intents using custom words](#for-intents-using-custom-words)
   - [General intents](#general-intents)
 - [Development environment](#development-environment)
-  - [Useful commands](#useful-commands)
+  - [Development setup](#development-setup)
+  - [Other useful commands](#other-useful-commands)
 - [License](#license)
 
 ## What can it do?
