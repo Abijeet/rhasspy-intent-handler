@@ -6,10 +6,13 @@ namespace App\Providers;
 use App\IntentHandlers\IntentHandlerFactory;
 use App\IntentHandlers\IntentHandlerService;
 use App\IntentHandlers\WikipediaIntentHandler;
+use App\ResponseReporters\ResponseReporterFactory;
+use App\ResponseReporters\TelegramResponseReporter;
 use App\SearchQuery\Builders\AudioQueryBuilder;
 use App\SearchQuery\Builders\QueryBuilder;
 use App\SearchQuery\Handlers\WikipediaQueryHandler;
 use App\SpeechToText\AzureSpeechToTextProvider;
+use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,8 +21,11 @@ class AppServiceProvider extends ServiceProvider
 	{
 		$this->app->singleton(
 			IntentHandlerService::class,
-			function () {
-				return new IntentHandlerService(new IntentHandlerFactory());
+			function (): IntentHandlerService {
+				return new IntentHandlerService(
+					new IntentHandlerFactory(),
+					$this->app->make(ResponseReporterFactory::class)
+				);
 			}
 		);
 
@@ -52,6 +58,27 @@ class AppServiceProvider extends ServiceProvider
 				return new AzureSpeechToTextProvider(
 					env('AZURE_SUBSCRIPTION_KEY'),
 					env('AZURE_REGION')
+				);
+			}
+		);
+
+		$this->app->singleton(
+			ResponseReporterFactory::class,
+			function (): ResponseReporterFactory {
+				return new ResponseReporterFactory(
+					$this->app,
+					config('response-reporters.available')
+				);
+			}
+		);
+
+		$this->app->singleton(
+			TelegramResponseReporter::class,
+			function (): TelegramResponseReporter {
+				return new TelegramResponseReporter(
+					new Client(),
+					env('TELEGRAM_BOT_TOKEN'),
+					env('TELEGRAM_CHANNEL_ID')
 				);
 			}
 		);
