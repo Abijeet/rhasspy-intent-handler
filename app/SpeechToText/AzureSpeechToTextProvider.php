@@ -46,7 +46,8 @@ class AzureSpeechToTextProvider extends SpeechToTextProvider
 				'body' => file_get_contents($audioPath),
 				'query' => [
 					'language' => $language
-				]
+				],
+				'timeout' => 15
 			]);
 
 			return $this->parseResponse($response);
