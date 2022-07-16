@@ -19,9 +19,10 @@ An HTTP intent handler for [Rhasspy](https://rhasspy.readthedocs.io/en/latest/) 
 
 ## What can it do?
 
-- [ ] Query Wikipedia for certain queries. Example:
+- [x] Query Wikipedia for certain queries. Example:
    * Who is Barack Obama?
    * Tell me about Delhi
+- [x] Send responses to a Telegram channel
 - [ ] How is the weather in `{my city}`
 - [ ] What is the time in Delhi?
 - [ ] Schedule events. Example:
@@ -43,7 +44,7 @@ So the above will match *set the light to red / green / blue*, but it cannot rec
 
 Basically Rhasspy [does not support custom / untrained words in sentences](https://community.rhasspy.org/t/recognized-untrain-sentences-words/465/7).
 
-To circumvent this, we define the sentence simply as `set the light to`, and then trigger voice recording via the HTTP API.
+To circumvent this, we define the sentence simply as `set the light to`, and then trigger voice recording via our HTTP API that acts as the intent handler.
 
 Various speech to text services are used to convert the audio to text, and then use that output to determine what to do.
 
