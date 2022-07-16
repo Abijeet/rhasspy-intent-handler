@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\SearchQuery\Builders;
+namespace App\IntentActionReceivers;
 
-interface QueryBuilder
+interface IntentActionReceiver
 {
 	public function get(): string;
 }

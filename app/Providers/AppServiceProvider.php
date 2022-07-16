@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\IntentActionReceivers\AudioIntentActionReceiver;
+use App\IntentActionReceivers\IntentActionReceiver;
 use App\IntentHandlers\IntentHandlerFactory;
 use App\IntentHandlers\IntentHandlerService;
 use App\IntentHandlers\WikipediaIntentHandler;
 use App\ResponseReporters\ResponseReporterFactory;
 use App\ResponseReporters\TelegramResponseReporter;
-use App\SearchQuery\Builders\AudioQueryBuilder;
-use App\SearchQuery\Builders\QueryBuilder;
 use App\SearchQuery\Handlers\WikipediaQueryHandler;
 use App\SpeechToText\AzureSpeechToTextProvider;
 use GuzzleHttp\Client;
@@ -30,9 +30,9 @@ class AppServiceProvider extends ServiceProvider
 		);
 
 		$this->app->singleton(
-			QueryBuilder::class,
-			function (): QueryBuilder {
-				return new AudioQueryBuilder(
+			IntentActionReceiver::class,
+			function (): IntentActionReceiver {
+				return new AudioIntentActionReceiver(
 					config('audio.recorder'),
 					config('audio.args'),
 					config('audio.fileFormat'),
@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
 			WikipediaIntentHandler::class,
 			function ($app): WikipediaIntentHandler {
 				return new WikipediaIntentHandler(
-					$app->make(QueryBuilder::class),
+					$app->make(IntentActionReceiver::class),
 					$app->make(WikipediaQueryHandler::class)
 				);
 			}

@@ -109,7 +109,7 @@ class AzureSpeechToTextProvider extends SpeechToTextProvider
 		// https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-speech-to-text#sample-responses
 		if (strtolower($parsedResponse['RecognitionStatus']) !== 'success') {
 			throw new TranscriptionError(
-				'Azure could not successfully transcribe the audio.' .
+				'Azure could not successfully transcribe the audio. ' .
 				'Response: ' . $response->getBody()->getContents()
 			);
 		}

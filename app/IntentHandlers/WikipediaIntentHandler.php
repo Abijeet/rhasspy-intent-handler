@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace App\IntentHandlers;
 
-use App\Exceptions\QueryBuilderError;
+use App\Exceptions\IntentActionReceiverError;
 use App\Exceptions\QueryResultError;
 use App\Exceptions\QueryResultNotFound;
+use App\IntentActionReceivers\IntentActionReceiver;
 use App\Models\Intent;
-use App\SearchQuery\Builders\QueryBuilder;
 use App\SearchQuery\Handlers\WikipediaQueryHandler;
 use Exception;
 
@@ -16,7 +16,7 @@ class WikipediaIntentHandler implements IntentHandler
 	private const NAME = 'Wikipedia';
 
 	public function __construct(
-		private QueryBuilder $queryBuilder,
+		private IntentActionReceiver $intentActionReceiver,
 		private WikipediaQueryHandler $queryHandler
 	) {
 	}
@@ -34,13 +34,13 @@ class WikipediaIntentHandler implements IntentHandler
 	public function handle(Intent $intent): string
 	{
 		try {
-			$searchText = $this->queryBuilder->get();
+			$searchText = $this->intentActionReceiver->get();
 			if (!$searchText) {
 				return __('empty_search_query');
 			}
 			$queryResult = $this->queryHandler->getQueryResult($searchText);
 			return $queryResult->getResult();
-		} catch (QueryBuilderError $e) {
+		} catch (IntentActionReceiverError $e) {
 			report($e);
 			return __('rhasspy_audio_query_builder_error');
 		} catch (QueryResultNotFound) {

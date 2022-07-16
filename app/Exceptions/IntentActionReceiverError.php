@@ -5,6 +5,6 @@ namespace App\Exceptions;
 
 use Exception;
 
-class QueryBuilderError extends Exception
+class  IntentActionReceiverError extends Exception
 {
 }

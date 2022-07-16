@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Tests\IntentHandler;
 
 use App\Exceptions\QueryResultNotFound;
+use App\IntentActionReceivers\IntentActionReceiver;
 use App\IntentHandlers\WikipediaIntentHandler;
 use App\Models\Intent;
-use App\SearchQuery\Builders\QueryBuilder;
 use App\SearchQuery\Handlers\WikipediaQueryHandler;
 use App\SearchQuery\Results\WikipediaQueryResult;
 use Tests\TestCase;
@@ -102,7 +102,7 @@ class WikipediaIntentHandlerTest extends TestCase
 
 	private function getQueryBuilder(string $query)
 	{
-		$queryBuilder = $this->getMockBuilder(QueryBuilder::class)
+		$queryBuilder = $this->getMockBuilder(IntentActionReceiver::class)
 			->disableOriginalConstructor()
 			->getMock();
 

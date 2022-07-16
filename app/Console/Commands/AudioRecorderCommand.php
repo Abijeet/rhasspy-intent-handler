@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\SearchQuery\Builders\QueryBuilder;
+use App\IntentActionReceivers\IntentActionReceiver;
 use Illuminate\Console\Command;
 
 class AudioRecorderCommand extends Command
@@ -16,7 +16,7 @@ class AudioRecorderCommand extends Command
 		parent::__construct();
 	}
 
-	public function handle(QueryBuilder $queryBuilder)
+	public function handle(IntentActionReceiver $queryBuilder)
 	{
 		$this->info($queryBuilder->get());
 	}
