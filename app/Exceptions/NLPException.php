@@ -5,6 +5,6 @@ namespace App\Exceptions;
 
 use Exception;
 
-class IntentActionReceiverError extends Exception
+class NLPException extends Exception
 {
 }

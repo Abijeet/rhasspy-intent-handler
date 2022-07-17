@@ -9,7 +9,10 @@ use RuntimeException;
 
 class IntentHandlerFactory
 {
-	private const HANDLERS = [WikipediaIntentHandler::class];
+	private const HANDLERS = [
+		ReminderIntentHandler::class,
+		WikipediaIntentHandler::class
+	];
 
 	public function getHandler(Intent $intent): IntentHandler
 	{

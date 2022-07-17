@@ -36,7 +36,7 @@ class WikipediaIntentHandler implements IntentHandler
 		try {
 			$searchText = $this->intentActionReceiver->get();
 			if (!$searchText) {
-				return __('empty_search_query');
+				return __('rhasspy_empty_search_query');
 			}
 			$queryResult = $this->queryHandler->getQueryResult($searchText);
 			return $queryResult->getResult();

@@ -6,5 +6,8 @@
     "rhasspy_wiki_query_not_found": "We could not find any results for :query",
     "rhasspy_wiki_query_error": "There was an error while fetching results for :query",
     "rhasspy_audio_query_builder_error": "There was an error while capturing the search query",
-    "rhasspy_unknown_processing_error": "There was an unknown error when processing your query."
+    "rhasspy_unknown_processing_error": "There was an unknown error when processing your query.",
+    "rhasspy_empty_reminder_action": "The user did not provide a text for the reminder",
+    "rhasspy_nlp_error": "There was an error while parsing the content from the NLP server. Response - :response",
+    "rhasspy_reminder_set": "Your reminder for: \":reminder\" has been set"
 }
