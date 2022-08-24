@@ -8,6 +8,8 @@ use App\IntentActionReceivers\IntentActionReceiver;
 use App\IntentHandlers\IntentHandlerFactory;
 use App\IntentHandlers\IntentHandlerService;
 use App\IntentHandlers\WikipediaIntentHandler;
+use App\NaturalLanguageProcessors\NaturalLanguageProcessor;
+use App\NaturalLanguageProcessors\OpenNLP;
 use App\ResponseReporters\ResponseReporterFactory;
 use App\ResponseReporters\TelegramResponseReporter;
 use App\SearchQuery\Handlers\WikipediaQueryHandler;
@@ -79,6 +81,18 @@ class AppServiceProvider extends ServiceProvider
 					new Client(),
 					env('TELEGRAM_BOT_TOKEN'),
 					env('TELEGRAM_CHANNEL_ID')
+				);
+			}
+		);
+
+		$this->app->singleton(
+			NaturalLanguageProcessor::class,
+			function (): OpenNLP {
+				return new OpenNLP(
+					new Client(),
+					env('OPEN_NLP_URL'),
+					env('APP_LOCALE'),
+					env('NLP_TIMEZONE')
 				);
 			}
 		);

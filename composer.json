@@ -6,8 +6,10 @@
     "type": "project",
     "require": {
         "php": "^8.0",
+        "eluceo/ical": "^2.7",
         "guzzlehttp/guzzle": "^7.3",
-        "laravel/lumen-framework": "^9.0"
+        "laravel/lumen-framework": "^9.0",
+        "thecsea/simple-caldav-client": "^0.1.14"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
